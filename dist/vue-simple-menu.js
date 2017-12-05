@@ -413,13 +413,12 @@ module.exports = g;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_VueSimpleMenu_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_VueSimpleMenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_VueSimpleMenu_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35b458b6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_VueSimpleMenu_vue__ = __webpack_require__(16);
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
 /* template */
-
+var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -430,7 +429,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_VueSimpleMenu_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35b458b6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_VueSimpleMenu_vue__["a" /* default */],
+  __vue_template__,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -469,9 +468,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
-//
-//
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _vue = __webpack_require__(5);
 
@@ -485,188 +482,43 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _vue2.default.component('menu-item', _VueSimpleMenuItem2.default);
 
-var menuData = {
-
-  // Элементы меню
-  articles: {
-
-    // Параметры элемента
-    id: 'articles',
-    name: 'Статьи',
-    uri: '/articles/list',
-
-    // Если есть вложенность
-    list: {
-      item1: {
-        id: 'item1',
-        name: 'Вложенность 1.1'
-      },
-      item2: {
-        id: 'item2',
-        name: 'Вложенность 2.1',
-        uri: '/test',
-        list: {
-          i1: {
-            id: 'i1',
-            name: 'Вложенность 2.1'
-          },
-          i2: {
-            id: 'i2',
-            name: 'Вложенность 2.2',
-            list: {
-              i1: {
-                id: 'i1',
-                name: 'Вложенность 3.1'
-              },
-              i2: {
-                id: 'i2',
-                name: 'Вложенность 3.2',
-                uri: '/test2'
-              },
-              i3: {
-                id: 'i3',
-                name: 'Вложенность 3.3'
-              }
-            }
-          },
-          i3: {
-            id: 'i3',
-            name: 'Вложенность 2.3'
-          }
-        }
-      }
-    }
-  },
-
-  blocks: {
-    id: 'blocks',
-    name: 'Блоки',
-    uri: '/blocks/list'
-  },
-
-  auth: {
-    id: 'auth',
-    list: {
-      roles: {
-        id: 'roles',
-        name: 'Роли',
-        uri: '/roles/list'
-      },
-      users: {
-        id: 'users',
-        name: 'Пользователи',
-        uri: '/users/list'
-      }
-    }
-  },
-
-  masks: {
-    id: 'masks',
-    name: 'Маски'
-  },
-
-  sujets: {
-    id: 'sujets',
-    name: 'Сюжеты',
-    uri: '/sujets/list'
-  },
-
-  rubrics: {
-    id: 'rubrics',
-    name: 'Рубрики',
-    // uri: '/rubrics/list',
-    list: {
-      thema: {
-        id: 'thema',
-        name: 'Тематический рубрикатор',
-        uri: '/rubrics/thema',
-        list: {
-          item1: {
-            id: 'item1',
-            name: 'Вложенность 1.1'
-          },
-          item2: {
-            id: 'item2',
-            name: 'Вложенность 2.1',
-            uri: '/test',
-            list: {
-              i1: {
-                id: 'i1',
-                name: 'Вложенность 2.1'
-              },
-              i2: {
-                id: 'i2',
-                name: 'Вложенность 2.2',
-                list: {
-                  i1: {
-                    id: 'i1',
-                    name: 'Вложенность 3.1'
-                  },
-                  i2: {
-                    id: 'i2',
-                    name: 'Вложенность 3.2',
-                    uri: '/test2'
-                  },
-                  i3: {
-                    id: 'i3',
-                    name: 'Вложенность 3.3'
-                  }
-                }
-              },
-              i3: {
-                id: 'i3',
-                name: 'Вложенность 2.3'
-              }
-            }
-          }
-        }
-      },
-      org: {
-        id: 'thema',
-        name: 'Организации',
-        uri: '/rubrics/org'
-      },
-      reg: {
-        id: 'thema',
-        name: 'Регионы',
-        uri: '/rubrics/reg'
-      }
-    }
-  }
-};
-
 exports.default = {
-  name: 'VueSimpleMenu',
-  data: function data() {
-    return {
-      menuData: menuData,
-      menuList: []
-    };
-  },
-  beforeMount: function beforeMount() {
-    this.menuList = this.initMenu(menuData);
-  },
+  install: function install(Vue, options) {
+    Vue.component('vue-simple-menu', {
+      name: 'VueSimpleMenu',
+      template: '<menu-item :menu="menuList" />',
+      data: function data() {
+        return {
+          menuData: options.menuData || [],
+          menuList: []
+        };
+      },
+      beforeMount: function beforeMount() {
+        this.menuList = this.initMenu(this.menuData);
+      },
 
-  methods: {
-    generateBranch: function generateBranch(menu) {
-      var _this = this;
+      methods: {
+        generateBranch: function generateBranch(menu) {
+          var _this = this;
 
-      return Object.keys(menu).reduce(function (acc, item) {
-        var menuItem = _extends({}, menu[item]);
+          return Object.keys(menu).reduce(function (acc, item) {
+            var menuItem = _extends({}, menu[item]);
 
-        if (menuItem.list) menuItem.list = _this.generateBranch(menuItem.list);
+            if (menuItem.list) menuItem.list = _this.generateBranch(menuItem.list);
 
-        if (menuItem.list && !menuItem.uri) {
-          menuItem.expand = true;
-          menuItem.expanded = true;
+            if (menuItem.list && !menuItem.uri) {
+              menuItem.expand = true;
+              menuItem.expanded = true;
+            }
+
+            return acc.concat(menuItem);
+          }, []);
+        },
+        initMenu: function initMenu(menuData) {
+          return this.generateBranch(menuData);
         }
-
-        return acc.concat(menuItem);
-      }, []);
-    },
-    initMenu: function initMenu(menu) {
-      return this.generateBranch(menu);
-    }
+      }
+    });
   }
 };
 
@@ -8609,28 +8461,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e40b912e", esExports)
-  }
-}
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("menu-item", { attrs: { menu: _vm.menuList } })
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-35b458b6", esExports)
   }
 }
 

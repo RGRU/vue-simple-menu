@@ -1,4 +1,175 @@
 import Vue from 'vue'
 import VueSimpleMenu from './lib/VueSimpleMenu.vue'
 
-new Vue(VueSimpleMenu).$mount(document.getElementById('app'))
+const menuData = {
+
+  // Элементы меню
+  articles: {
+
+    // Параметры элемента
+    id: 'articles',
+    name: 'Статьи',
+    uri: '/articles/list',
+
+    // Если есть вложенность
+    list: {
+      item1: {
+        id: 'item1',
+        name: 'Вложенность 1.1'
+      },
+      item2: {
+        id: 'item2',
+        name: 'Вложенность 2.1',
+        uri: '/test',
+        list: {
+          i1: {
+            id: 'i1',
+            name: 'Вложенность 2.1'
+          },
+          i2: {
+            id: 'i2',
+            name: 'Вложенность 2.2',
+            list: {
+              i1: {
+                id: 'i1',
+                name: 'Вложенность 3.1'
+              },
+              i2: {
+                id: 'i2',
+                name: 'Вложенность 3.2',
+                uri: '/test2'
+              },
+              i3: {
+                id: 'i3',
+                name: 'Вложенность 3.3'
+              }
+            }
+          },
+          i3: {
+            id: 'i3',
+            name: 'Вложенность 2.3'
+          }
+        }
+      }
+    }
+  },
+
+  blocks: {
+    id: 'blocks',
+    name: 'Блоки',
+    uri: '/blocks/list'
+  },
+
+  auth: {
+    id: 'auth',
+    list: {
+      roles: {
+        id: 'roles',
+        name: 'Роли',
+        uri: '/roles/list'
+      },
+      users: {
+        id: 'users',
+        name: 'Пользователи',
+        uri: '/users/list'
+      }
+    }
+  },
+
+  masks: {
+    id: 'masks',
+    name: 'Маски'
+  },
+
+  sujets: {
+    id: 'sujets',
+    name: 'Сюжеты',
+    uri: '/sujets/list'
+  },
+
+  rubrics: {
+    id: 'rubrics',
+    name: 'Рубрики',
+    // uri: '/rubrics/list',
+    list: {
+      thema: {
+        id: 'thema',
+        name: 'Тематический рубрикатор',
+        uri: '/rubrics/thema',
+        list: {
+          item1: {
+            id: 'item1',
+            name: 'Вложенность 1.1'
+          },
+          item2: {
+            id: 'item2',
+            name: 'Вложенность 2.1',
+            uri: '/test',
+            list: {
+              i1: {
+                id: 'i1',
+                name: 'Вложенность 2.1'
+              },
+              i2: {
+                id: 'i2',
+                name: 'Вложенность 2.2',
+                list: {
+                  i1: {
+                    id: 'i1',
+                    name: 'Вложенность 3.1'
+                  },
+                  i2: {
+                    id: 'i2',
+                    name: 'Вложенность 3.2',
+                    uri: '/test2'
+                  },
+                  i3: {
+                    id: 'i3',
+                    name: 'Вложенность 3.3'
+                  }
+                }
+              },
+              i3: {
+                id: 'i3',
+                name: 'Вложенность 2.3'
+              }
+            }
+          }
+        }
+      },
+      org: {
+        id: 'thema',
+        name: 'Организации',
+        uri: '/rubrics/org'
+      },
+      reg: {
+        id: 'thema',
+        name: 'Регионы',
+        uri: '/rubrics/reg'
+      }
+    }
+  }
+}
+
+Vue.use(VueSimpleMenu, {
+  menuData
+})
+
+// const MenuComp = Vue.component('vue-simple-menu', Vue.extend({
+//   ...VueSimpleMenu,
+//   propData: {
+//     menuData
+//   }
+// }))
+//
+// console.log(new MenuComp({
+//   el: '#menu',
+//   propData: {
+//     menuData
+//   }
+// }))
+console.log(
+  new Vue({
+    el: '#app'
+  })
+)

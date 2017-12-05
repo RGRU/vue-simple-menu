@@ -1,6 +1,5 @@
 const webpack = require('webpack')
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
-// const UglifyJsPlugin = require('uglify-fs-plugin')
+const UglifyJsPlugin = require('uglify-js-plugin')
 const path = require('path')
 
 const config = {
@@ -37,9 +36,31 @@ module.exports = [
         libraryTarget: 'umd',
         library: 'VueSimpleMenu',
         umdNamedDefine: true
+      }
+    }
+  ),
+
+  // Build for using in browser
+  // as <script src="...">
+  Object.assign(
+    {},
+    config,
+    {
+      entry: {
+        'vue-simple-menu': path.join(__dirname, 'src/scripts/plugin.js'),
+        'vue-simple-menu.min': path.join(__dirname, 'src/scripts/plugin.js')
+      },
+      output: {
+        path: path.join(__dirname, 'dist/global'),
+        filename: '[name].js',
+        libraryTarget: 'window',
+        libraryExport: 'default',
+        library: 'VueSimpleMenu'
       },
       plugins: [
-        new WebpackCleanupPlugin()
+        new UglifyJsPlugin({
+          test: /\.min\.js$/
+        })
       ]
     }
   )
