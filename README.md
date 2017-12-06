@@ -1,7 +1,7 @@
 # Vue simple menu
 Vue component for fast create simple menu block
 
-##TODO List
+## TODO List
   * add to npm
   * pass to npm folder only dist folder
   * stylize temes
