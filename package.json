@@ -6,6 +6,7 @@
   "scripts": {
     "test": "test",
     "build": "webpack && webpack --config webpack.docs.config.js",
+    "build:watch": "webpack --watch && webpack --config webpack.docs.config.js",
     "docs": "webpack --config webpack.docs.config.js",
     "dev": "webpack-dev-server --config webpack.docs.config.js --watch"
   },

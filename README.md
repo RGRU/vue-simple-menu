@@ -1,6 +1,15 @@
 # Vue simple menu
 Vue component for fast create simple menu block
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+## Для кого?
+Простое и легкое меню с набором основного функционала, которого хватает в 80% случаев:
+  * Элементы меню с прямой ссылкой
+  * Элементы меню как раскрывающийся каталог
+  * Бесконечная вложенность
+  * __В процессе:__ _Стилизация внешнего вида (можно выбрать готовую, либо добвить самому)_
+
 ## TODO List
   * add to npm
   * pass to npm folder only dist folder
@@ -13,15 +22,6 @@ Vue component for fast create simple menu block
   * update figure for readme
   * add ru/en languages for docs
   * write article about this component
-
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-## Для кого?
-Простое и легкое меню с набором основного функционала, которого хватает в 80% случаев:
-  * Элементы меню с прямой ссылкой
-  * Элементы меню как раскрывающийся каталог
-  * Бесконечная вложенность
-  * __В процессе:__ _Стилизация внешнего вида (можно выбрать готовую, либо добвить самому)_
 
 # Installation
 

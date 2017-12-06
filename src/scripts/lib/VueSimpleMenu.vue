@@ -1,9 +1,5 @@
 <script>
-import Vue from 'vue'
 import VueSimpleMenuItem from './VueSimpleMenuItem.vue'
-
-// Add item component for create item menu
-Vue.component('vue-simple-menu-item', VueSimpleMenuItem)
 
 export default {
   /**
@@ -17,6 +13,9 @@ export default {
     Vue.component('vue-simple-menu', {
       name: 'VueSimpleMenu',
       template: '<vue-simple-menu-item :menu="menuList" />',
+      components: {
+        'vue-simple-menu-item': VueSimpleMenuItem
+      },
       data () {
         return {
           // Raw menu data
