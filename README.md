@@ -1,6 +1,19 @@
 # Vue simple menu
 Vue component for fast create simple menu block
 
+##TODO List
+  * add to npm
+  * pass to npm folder only dist folder
+  * stylize temes
+  * add tests
+  * add to travis
+  * add demo for using as global window object
+  * add docs to gh-pages branch
+  * add to awesome vue github
+  * update figure for readme
+  * add ru/en languages for docs
+  * write article about this component
+
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Для кого?
@@ -18,19 +31,21 @@ npm i vue-simple-menu -D
 ```
 
 ## Component as global in browser
-in progress
+work in progress...
 
 # Usage
 
 Import component to your code
 
-For example, we have menu container
+For example, we have app container, and menu component inside
 
 ```html
-<div id="menu"></div>
+<div id="app">
+  <vue-simple-menu menuData="__DATA__">
+</div>
 ```
 
-Для формирования меню, в него нужно передать данные определенного формата (то, как мы их получаем отдается на откуп разработчику)
+Для формирования меню, в него нужно передать в свойство (menuData) данные определенного формата (то, как мы их получаем отдается на откуп разработчику)
 
 Params
 
@@ -58,7 +73,7 @@ __figure 4__ Add children elements to item
 Example
 
 ```js
-const menuData = {
+const __DATA__ = {
   item1: {
     id: 'item1',
     name: 'Item 1',
@@ -93,12 +108,21 @@ const menuData = {
 }
 ```
 
-And mount to container our component
+And add imported menu component to Vue through `use` method. Menu data pass to component as options in `use` method
 
 ```js
+import Vue from 'vue'
 import VueSimpleMenu from 'vue-simple-menu'
 
-new Vue(VueSimpleMenu).$mount(document.getElementById('menu'))
+// Use menu component
+Vue.use(VueSimpleMenu, {
+  menuData
+})
+
+// Init vue application
+new Vue({
+  el: '#app'
+})
 ```
 
-Done, we can use it.
+Done, menu was rendered in our application.

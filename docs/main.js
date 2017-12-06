@@ -10268,25 +10268,13 @@ var menuData = {
       }
     }
   }
-};
 
-_vue2.default.use(_VueSimpleMenu2.default, {
+  // Use menu component
+};_vue2.default.use(_VueSimpleMenu2.default, {
   menuData: menuData
 });
 
-// const MenuComp = Vue.component('vue-simple-menu', Vue.extend({
-//   ...VueSimpleMenu,
-//   propData: {
-//     menuData
-//   }
-// }))
-//
-// console.log(new MenuComp({
-//   el: '#menu',
-//   propData: {
-//     menuData
-//   }
-// }))
+// Init vue application
 console.log(new _vue2.default({
   el: '#app'
 }));
@@ -10616,32 +10604,54 @@ var _VueSimpleMenuItem2 = _interopRequireDefault(_VueSimpleMenuItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue2.default.component('menu-item', _VueSimpleMenuItem2.default);
+// Add item component for create item menu
+_vue2.default.component('vue-simple-menu-item', _VueSimpleMenuItem2.default);
 
 exports.default = {
+  /**
+   * Install - method for use as vue plugin
+   *
+   * @param  {object} Vue vue instance
+   * @param  {object} options options for init component
+   * @return {void}
+   */
   install: function install(Vue, options) {
     Vue.component('vue-simple-menu', {
       name: 'VueSimpleMenu',
-      template: '<menu-item :menu="menuList" />',
+      template: '<vue-simple-menu-item :menu="menuList" />',
       data: function data() {
         return {
+          // Raw menu data
           menuData: options.menuData || [],
+
+          // Complete menu data, for component
           menuList: []
         };
       },
       beforeMount: function beforeMount() {
+        // Init menu data
         this.menuList = this.initMenu(this.menuData);
       },
 
       methods: {
-        generateBranch: function generateBranch(menu) {
+        /**
+         * generateBranch - recursive function for generate menu branch
+         *
+         * @param  {object} menuBranch branc menu for precessing
+         * @return {array} complete menu data
+         */
+        generateBranch: function generateBranch(menuBranch) {
           var _this = this;
 
-          return Object.keys(menu).reduce(function (acc, item) {
-            var menuItem = _extends({}, menu[item]);
+          return Object.keys(menuBranch).reduce(function (acc, item) {
+            var menuItem = _extends({}, menuBranch[item]);
 
+            // If have child list items,
+            // generate child branch
             if (menuItem.list) menuItem.list = _this.generateBranch(menuItem.list);
 
+            // If item need expand behavoir
+            // add property
             if (menuItem.list && !menuItem.uri) {
               menuItem.expand = true;
               menuItem.expanded = true;
@@ -10650,6 +10660,15 @@ exports.default = {
             return acc.concat(menuItem);
           }, []);
         },
+
+
+        /**
+         * initMenu - create complete menu from raw data
+         * Add some features to data
+         *
+         * @param  {object} menuData raw data for menu
+         * @return {array} complete data for menu
+         */
         initMenu: function initMenu(menuData) {
           return this.generateBranch(menuData);
         }
@@ -11180,7 +11199,7 @@ var render = function() {
             ? _c(
                 "div",
                 { staticClass: "vue-simple-menu__child" },
-                [_c("menu-item", { attrs: { menu: item.list } })],
+                [_c("vue-simple-menu-item", { attrs: { menu: item.list } })],
                 1
               )
             : _vm._e()

@@ -151,23 +151,12 @@ const menuData = {
   }
 }
 
+// Use menu component
 Vue.use(VueSimpleMenu, {
   menuData
 })
 
-// const MenuComp = Vue.component('vue-simple-menu', Vue.extend({
-//   ...VueSimpleMenu,
-//   propData: {
-//     menuData
-//   }
-// }))
-//
-// console.log(new MenuComp({
-//   el: '#menu',
-//   propData: {
-//     menuData
-//   }
-// }))
+// Init vue application
 console.log(
   new Vue({
     el: '#app'
