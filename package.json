@@ -1,8 +1,12 @@
 {
   "name": "vue-simple-menu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vue component for fast create simple menu block",
   "main": "dist/vue-simple-menu.js",
+  "unpkg": "dist/global/vue-simple-menu.min.js",
+  "files": {
+    "dist"
+  },
   "scripts": {
     "test": "test",
     "build": "webpack && webpack --config webpack.docs.config.js",
