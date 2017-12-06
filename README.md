@@ -2,6 +2,7 @@
 Vue component for fast create simple menu block
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![npm version](https://badge.fury.io/js/vue-simple-menu.svg)](https://badge.fury.io/js/vue-simple-menu)
 
 ## Для кого?
 Простое и легкое меню с набором основного функционала, которого хватает в 80% случаев:
