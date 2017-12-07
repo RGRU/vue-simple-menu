@@ -68,10 +68,10 @@ __figure 3__ Add link to item element
 __figure 4__ Add children elements to item  
 ![figure4](./assets/figure4.jpg)
 
-Example
+For example file rawMenuData.js
 
 ```js
-const __DATA__ = {
+export default {
   item1: {
     id: 'item1',
     name: 'Item 1',
