@@ -39,7 +39,7 @@ For example, we have app container, and menu component inside
 
 ```html
 <div id="app">
-  <vue-simple-menu :raw-menu-data="__DATA__">
+  <vue-simple-menu :raw-menu-data="rawMenuData">
 </div>
 ```
 
