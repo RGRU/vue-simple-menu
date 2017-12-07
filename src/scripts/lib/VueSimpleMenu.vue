@@ -26,6 +26,11 @@ export default {
           list: []
         }
       },
+      mounted () {
+        if (this.rawMenuData) {
+          this.list = this.generateBranch(this.rawMenuData)
+        }
+      },
       watch: {
         rawMenuData () {
           this.list = this.generateBranch(this.rawMenuData)
