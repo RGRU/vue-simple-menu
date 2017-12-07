@@ -822,7 +822,7 @@ var render = function() {
                 "a",
                 {
                   staticClass: "vue-simple-menu__link",
-                  attrs: { href: "item.uri" }
+                  attrs: { href: item.uri }
                 },
                 [_vm._v(_vm._s(item.name))]
               )

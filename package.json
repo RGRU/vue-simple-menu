@@ -1,6 +1,6 @@
 {
   "name": "vue-simple-menu",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "vue component for fast create simple menu block",
   "main": "dist/vue-simple-menu.js",
   "unpkg": "dist/global/vue-simple-menu.min.js",
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "karma start karma.conf.js",
-    "build": "webpack && npm run docs && npm run test",
+    "build": "npm run test && webpack && npm run docs",
     "build:watch": "webpack --watch && webpack --config webpack.docs.config.js",
     "docs": "webpack --config webpack.docs.config.js",
     "dev": "webpack-dev-server --config webpack.docs.config.js --watch"
