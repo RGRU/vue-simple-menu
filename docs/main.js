@@ -424,14 +424,14 @@ var app = new _vue2.default({
   el: '#app',
   data: function data() {
     return {
-      rawData: {}
+      rawMenuData: {}
     };
   }
 });
 
 // Emulate async
 setTimeout(function () {
-  app.rawData = _rawMenuData2.default;
+  app.rawMenuData = _rawMenuData2.default;
 }, 1000);
 
 /***/ }),
@@ -10478,7 +10478,7 @@ exports.default = {
         'vue-simple-menu-item': _VueSimpleMenuItem2.default
       },
       props: {
-        rawData: {
+        rawMenuData: {
           type: Object,
           required: true
         }
@@ -10490,8 +10490,8 @@ exports.default = {
       },
 
       watch: {
-        rawData: function rawData() {
-          this.list = this.generateBranch(this.rawData);
+        rawMenuData: function rawMenuData() {
+          this.list = this.generateBranch(this.rawMenuData);
         }
       },
       methods: {

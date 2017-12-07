@@ -1,6 +1,6 @@
 {
   "name": "vue-simple-menu",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "vue component for fast create simple menu block",
   "main": "dist/vue-simple-menu.js",
   "unpkg": "dist/global/vue-simple-menu.min.js",

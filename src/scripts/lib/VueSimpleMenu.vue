@@ -16,7 +16,7 @@ export default {
         'vue-simple-menu-item': VueSimpleMenuItem
       },
       props: {
-        rawData: {
+        rawMenuData: {
           type: Object,
           required: true
         }
@@ -27,8 +27,8 @@ export default {
         }
       },
       watch: {
-        rawData () {
-          this.list = this.generateBranch(this.rawData)
+        rawMenuData () {
+          this.list = this.generateBranch(this.rawMenuData)
         }
       },
       methods: {

@@ -39,7 +39,7 @@ For example, we have app container, and menu component inside
 
 ```html
 <div id="app">
-  <vue-simple-menu :menu-data="__DATA__">
+  <vue-simple-menu :raw-menu-data="__DATA__">
 </div>
 ```
 
@@ -113,7 +113,7 @@ import Vue from 'vue'
 import VueSimpleMenu from 'vue-simple-menu'
 
 // Data for menu, may get by APi or somehow else
-import menuData from './menuData'
+import rawMenuData from './rawMenuData'
 
 // Use menu component
 Vue.use(VueSimpleMenu)
@@ -125,14 +125,14 @@ new Vue({
     return {
 
       // Init default data for menu
-      menuData: {}
+      rawMenuData: {}
     }
   }
 })
 
 // Emulate async getting menu data
 setTimeout(function () {
-  app.menuData = menuData
+  app.rawMenuData = rawMenuData
 }, 1000)
 ```
 

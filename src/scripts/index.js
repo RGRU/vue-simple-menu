@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueSimpleMenu from './lib/VueSimpleMenu.vue'
-import rawData from './rawMenuData'
+import rawMenuData from './rawMenuData'
 
 // Use menu component
 Vue.use(VueSimpleMenu)
@@ -10,12 +10,12 @@ const app = new Vue({
   el: '#app',
   data () {
     return {
-      rawData: {}
+      rawMenuData: {}
     }
   }
 })
 
 // Emulate async
 setTimeout(function () {
-  app.rawData = rawData
+  app.rawMenuData = rawMenuData
 }, 1000)
