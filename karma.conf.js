@@ -4,6 +4,7 @@ module.exports = function(config) {
   config.set({
     browsers: ['ChromeHeadless'],
     frameworks: ['mocha', 'chai'],
+    singleRun: true,
     autoWatch: false,
     reporters: ['mocha'],
     files: ['./test/index.js'],
