@@ -410,166 +410,29 @@ var _VueSimpleMenu = __webpack_require__(7);
 
 var _VueSimpleMenu2 = _interopRequireDefault(_VueSimpleMenu);
 
+var _menuData = __webpack_require__(17);
+
+var _menuData2 = _interopRequireDefault(_menuData);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var menuData = {
-
-  // Элементы меню
-  articles: {
-
-    // Параметры элемента
-    id: 'articles',
-    name: 'Статьи',
-    uri: '/articles/list',
-
-    // Если есть вложенность
-    list: {
-      item1: {
-        id: 'item1',
-        name: 'Вложенность 1.1'
-      },
-      item2: {
-        id: 'item2',
-        name: 'Вложенность 2.1',
-        uri: '/test',
-        list: {
-          i1: {
-            id: 'i1',
-            name: 'Вложенность 2.1'
-          },
-          i2: {
-            id: 'i2',
-            name: 'Вложенность 2.2',
-            list: {
-              i1: {
-                id: 'i1',
-                name: 'Вложенность 3.1'
-              },
-              i2: {
-                id: 'i2',
-                name: 'Вложенность 3.2',
-                uri: '/test2'
-              },
-              i3: {
-                id: 'i3',
-                name: 'Вложенность 3.3'
-              }
-            }
-          },
-          i3: {
-            id: 'i3',
-            name: 'Вложенность 2.3'
-          }
-        }
-      }
-    }
-  },
-
-  blocks: {
-    id: 'blocks',
-    name: 'Блоки',
-    uri: '/blocks/list'
-  },
-
-  auth: {
-    id: 'auth',
-    list: {
-      roles: {
-        id: 'roles',
-        name: 'Роли',
-        uri: '/roles/list'
-      },
-      users: {
-        id: 'users',
-        name: 'Пользователи',
-        uri: '/users/list'
-      }
-    }
-  },
-
-  masks: {
-    id: 'masks',
-    name: 'Маски'
-  },
-
-  sujets: {
-    id: 'sujets',
-    name: 'Сюжеты',
-    uri: '/sujets/list'
-  },
-
-  rubrics: {
-    id: 'rubrics',
-    name: 'Рубрики',
-    // uri: '/rubrics/list',
-    list: {
-      thema: {
-        id: 'thema',
-        name: 'Тематический рубрикатор',
-        uri: '/rubrics/thema',
-        list: {
-          item1: {
-            id: 'item1',
-            name: 'Вложенность 1.1'
-          },
-          item2: {
-            id: 'item2',
-            name: 'Вложенность 2.1',
-            uri: '/test',
-            list: {
-              i1: {
-                id: 'i1',
-                name: 'Вложенность 2.1'
-              },
-              i2: {
-                id: 'i2',
-                name: 'Вложенность 2.2',
-                list: {
-                  i1: {
-                    id: 'i1',
-                    name: 'Вложенность 3.1'
-                  },
-                  i2: {
-                    id: 'i2',
-                    name: 'Вложенность 3.2',
-                    uri: '/test2'
-                  },
-                  i3: {
-                    id: 'i3',
-                    name: 'Вложенность 3.3'
-                  }
-                }
-              },
-              i3: {
-                id: 'i3',
-                name: 'Вложенность 2.3'
-              }
-            }
-          }
-        }
-      },
-      org: {
-        id: 'thema',
-        name: 'Организации',
-        uri: '/rubrics/org'
-      },
-      reg: {
-        id: 'thema',
-        name: 'Регионы',
-        uri: '/rubrics/reg'
-      }
-    }
-  }
-
-  // Use menu component
-};_vue2.default.use(_VueSimpleMenu2.default, {
-  menuData: menuData
-});
+// Use menu component
+_vue2.default.use(_VueSimpleMenu2.default);
 
 // Init vue application
-console.log(new _vue2.default({
-  el: '#app'
-}));
+var app = new _vue2.default({
+  el: '#app',
+  data: function data() {
+    return {
+      menuData: {}
+    };
+  }
+});
+
+// Emulate async
+setTimeout(function () {
+  app.menuData = _menuData2.default;
+}, 1000);
 
 /***/ }),
 /* 4 */
@@ -10605,30 +10468,26 @@ exports.default = {
    * Install - method for use as vue plugin
    *
    * @param  {object} Vue vue instance
-   * @param  {object} options options for init component
    * @return {void}
    */
-  install: function install(Vue, options) {
+  install: function install(Vue) {
     Vue.component('vue-simple-menu', {
       name: 'VueSimpleMenu',
-      template: '<vue-simple-menu-item :menu="menuList" />',
+      template: '<vue-simple-menu-item :menu="list" />',
       components: {
         'vue-simple-menu-item': _VueSimpleMenuItem2.default
       },
-      data: function data() {
-        return {
-          // Raw menu data
-          menuData: options.menuData || [],
-
-          // Complete menu data, for component
-          menuList: []
-        };
+      props: {
+        menuData: {
+          type: Object,
+          required: true
+        }
       },
-      beforeMount: function beforeMount() {
-        // Init menu data
-        this.menuList = this.initMenu(this.menuData);
+      computed: {
+        list: function list() {
+          return this.generateBranch(this.menuData);
+        }
       },
-
       methods: {
         /**
          * generateBranch - recursive function for generate menu branch
@@ -10655,18 +10514,6 @@ exports.default = {
 
             return acc.concat(menuItem);
           }, []);
-        },
-
-
-        /**
-         * initMenu - create complete menu from raw data
-         * Add some features to data
-         *
-         * @param  {object} menuData raw data for menu
-         * @return {array} complete data for menu
-         */
-        initMenu: function initMenu(menuData) {
-          return this.generateBranch(menuData);
         }
       }
     });
@@ -11214,6 +11061,166 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-e40b912e", esExports)
   }
 }
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+
+  // Элементы меню
+  articles: {
+
+    // Параметры элемента
+    id: 'articles',
+    name: 'Статьи',
+    uri: '/articles/list',
+
+    // Если есть вложенность
+    list: {
+      item1: {
+        id: 'item1',
+        name: 'Вложенность 1.1'
+      },
+      item2: {
+        id: 'item2',
+        name: 'Вложенность 2.1',
+        uri: '/test',
+        list: {
+          i1: {
+            id: 'i1',
+            name: 'Вложенность 2.1'
+          },
+          i2: {
+            id: 'i2',
+            name: 'Вложенность 2.2',
+            list: {
+              i1: {
+                id: 'i1',
+                name: 'Вложенность 3.1'
+              },
+              i2: {
+                id: 'i2',
+                name: 'Вложенность 3.2',
+                uri: '/test2'
+              },
+              i3: {
+                id: 'i3',
+                name: 'Вложенность 3.3'
+              }
+            }
+          },
+          i3: {
+            id: 'i3',
+            name: 'Вложенность 2.3'
+          }
+        }
+      }
+    }
+  },
+
+  blocks: {
+    id: 'blocks',
+    name: 'Блоки',
+    uri: '/blocks/list'
+  },
+
+  auth: {
+    id: 'auth',
+    list: {
+      roles: {
+        id: 'roles',
+        name: 'Роли',
+        uri: '/roles/list'
+      },
+      users: {
+        id: 'users',
+        name: 'Пользователи',
+        uri: '/users/list'
+      }
+    }
+  },
+
+  masks: {
+    id: 'masks',
+    name: 'Маски'
+  },
+
+  sujets: {
+    id: 'sujets',
+    name: 'Сюжеты',
+    uri: '/sujets/list'
+  },
+
+  rubrics: {
+    id: 'rubrics',
+    name: 'Рубрики',
+    // uri: '/rubrics/list',
+    list: {
+      thema: {
+        id: 'thema',
+        name: 'Тематический рубрикатор',
+        uri: '/rubrics/thema',
+        list: {
+          item1: {
+            id: 'item1',
+            name: 'Вложенность 1.1'
+          },
+          item2: {
+            id: 'item2',
+            name: 'Вложенность 2.1',
+            uri: '/test',
+            list: {
+              i1: {
+                id: 'i1',
+                name: 'Вложенность 2.1'
+              },
+              i2: {
+                id: 'i2',
+                name: 'Вложенность 2.2',
+                list: {
+                  i1: {
+                    id: 'i1',
+                    name: 'Вложенность 3.1'
+                  },
+                  i2: {
+                    id: 'i2',
+                    name: 'Вложенность 3.2',
+                    uri: '/test2'
+                  },
+                  i3: {
+                    id: 'i3',
+                    name: 'Вложенность 3.3'
+                  }
+                }
+              },
+              i3: {
+                id: 'i3',
+                name: 'Вложенность 2.3'
+              }
+            }
+          }
+        }
+      },
+      org: {
+        id: 'thema',
+        name: 'Организации',
+        uri: '/rubrics/org'
+      },
+      reg: {
+        id: 'thema',
+        name: 'Регионы',
+        uri: '/rubrics/reg'
+      }
+    }
+  }
+};
 
 /***/ })
 /******/ ]);

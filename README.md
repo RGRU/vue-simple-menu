@@ -12,13 +12,10 @@ Vue component for fast create simple menu block
   * __В процессе:__ _Стилизация внешнего вида (можно выбрать готовую, либо добвить самому)_
 
 ## TODO List
-  * add to npm
-  * pass to npm folder only dist folder
   * stylize temes
   * add tests
   * add to travis
   * add demo for using as global window object
-  * add docs to gh-pages branch
   * add to awesome vue github
   * update figure for readme
   * add ru/en languages for docs
@@ -42,7 +39,7 @@ For example, we have app container, and menu component inside
 
 ```html
 <div id="app">
-  <vue-simple-menu menuData="__DATA__">
+  <vue-simple-menu :menu-data="__DATA__">
 </div>
 ```
 
@@ -115,15 +112,28 @@ And add imported menu component to Vue through `use` method. Menu data pass to c
 import Vue from 'vue'
 import VueSimpleMenu from 'vue-simple-menu'
 
+// Data for menu, may get by APi or somehow else
+import menuData from './menuData'
+
 // Use menu component
-Vue.use(VueSimpleMenu, {
-  menuData
-})
+Vue.use(VueSimpleMenu)
 
 // Init vue application
 new Vue({
-  el: '#app'
+  el: '#app',
+  data () {
+    return {
+
+      // Init default data for menu
+      menuData: {}
+    }
+  }
 })
+
+// Emulate async getting menu data
+setTimeout(function () {
+  app.menuData = menuData
+}, 1000)
 ```
 
 Done, menu was rendered in our application.

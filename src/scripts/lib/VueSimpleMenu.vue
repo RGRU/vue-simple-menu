@@ -6,28 +6,25 @@ export default {
    * Install - method for use as vue plugin
    *
    * @param  {object} Vue vue instance
-   * @param  {object} options options for init component
    * @return {void}
    */
-  install (Vue, options) {
+  install (Vue) {
     Vue.component('vue-simple-menu', {
       name: 'VueSimpleMenu',
-      template: '<vue-simple-menu-item :menu="menuList" />',
+      template: '<vue-simple-menu-item :menu="list" />',
       components: {
         'vue-simple-menu-item': VueSimpleMenuItem
       },
-      data () {
-        return {
-          // Raw menu data
-          menuData: options.menuData || [],
-
-          // Complete menu data, for component
-          menuList: []
+      props: {
+        menuData: {
+          type: Object,
+          required: true
         }
       },
-      beforeMount () {
-        // Init menu data
-        this.menuList = this.initMenu(this.menuData)
+      computed: {
+        list: function () {
+          return this.generateBranch(this.menuData)
+        }
       },
       methods: {
         /**
@@ -53,17 +50,6 @@ export default {
 
             return acc.concat(menuItem)
           }, [])
-        },
-
-        /**
-         * initMenu - create complete menu from raw data
-         * Add some features to data
-         *
-         * @param  {object} menuData raw data for menu
-         * @return {array} complete data for menu
-         */
-        initMenu (menuData) {
-          return this.generateBranch(menuData)
         }
       }
     })
