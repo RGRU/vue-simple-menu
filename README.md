@@ -17,8 +17,6 @@ Vue component for fast create simple menu block
 ## TODO List
 
   * stylize temes
-  * add tests
-  * add to travis
   * add to awesome vue github
   * update figure for readme
   * add ru/en languages for docs
