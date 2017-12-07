@@ -278,6 +278,11 @@ exports.default = {
           list: []
         };
       },
+      mounted: function mounted() {
+        if (this.rawMenuData) {
+          this.list = this.generateBranch(this.rawMenuData);
+        }
+      },
 
       watch: {
         rawMenuData: function rawMenuData() {
