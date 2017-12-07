@@ -268,14 +268,20 @@ exports.default = {
         'vue-simple-menu-item': _VueSimpleMenuItem2.default
       },
       props: {
-        menuData: {
+        rawData: {
           type: Object,
           required: true
         }
       },
-      computed: {
-        list: function list() {
-          return this.generateBranch(this.menuData);
+      data: function data() {
+        return {
+          list: []
+        };
+      },
+
+      watch: {
+        rawData: function rawData() {
+          this.list = this.generateBranch(this.rawData);
         }
       },
       methods: {

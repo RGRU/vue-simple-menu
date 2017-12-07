@@ -410,9 +410,9 @@ var _VueSimpleMenu = __webpack_require__(7);
 
 var _VueSimpleMenu2 = _interopRequireDefault(_VueSimpleMenu);
 
-var _menuData = __webpack_require__(17);
+var _rawMenuData = __webpack_require__(17);
 
-var _menuData2 = _interopRequireDefault(_menuData);
+var _rawMenuData2 = _interopRequireDefault(_rawMenuData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -424,14 +424,14 @@ var app = new _vue2.default({
   el: '#app',
   data: function data() {
     return {
-      menuData: {}
+      rawData: {}
     };
   }
 });
 
 // Emulate async
 setTimeout(function () {
-  app.menuData = _menuData2.default;
+  app.rawData = _rawMenuData2.default;
 }, 1000);
 
 /***/ }),
@@ -10478,14 +10478,20 @@ exports.default = {
         'vue-simple-menu-item': _VueSimpleMenuItem2.default
       },
       props: {
-        menuData: {
+        rawData: {
           type: Object,
           required: true
         }
       },
-      computed: {
-        list: function list() {
-          return this.generateBranch(this.menuData);
+      data: function data() {
+        return {
+          list: []
+        };
+      },
+
+      watch: {
+        rawData: function rawData() {
+          this.list = this.generateBranch(this.rawData);
         }
       },
       methods: {

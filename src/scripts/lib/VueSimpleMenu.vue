@@ -16,14 +16,19 @@ export default {
         'vue-simple-menu-item': VueSimpleMenuItem
       },
       props: {
-        menuData: {
+        rawData: {
           type: Object,
           required: true
         }
       },
-      computed: {
-        list: function () {
-          return this.generateBranch(this.menuData)
+      data () {
+        return {
+          list: []
+        }
+      },
+      watch: {
+        rawData () {
+          this.list = this.generateBranch(this.rawData)
         }
       },
       methods: {
