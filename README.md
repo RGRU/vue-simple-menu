@@ -1,10 +1,12 @@
 # Vue simple menu
+
 Vue component for fast create simple menu block
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![npm version](https://badge.fury.io/js/vue-simple-menu.svg)](https://badge.fury.io/js/vue-simple-menu)
 
 ## Для кого?
+
 Простое и легкое меню с набором основного функционала, которого хватает в 80% случаев:
   * Элементы меню с прямой ссылкой
   * Элементы меню как раскрывающийся каталог
@@ -12,28 +14,24 @@ Vue component for fast create simple menu block
   * __В процессе:__ _Стилизация внешнего вида (можно выбрать готовую, либо добвить самому)_
 
 ## TODO List
+
   * stylize temes
   * add tests
   * add to travis
-  * add demo for using as global window object
   * add to awesome vue github
   * update figure for readme
   * add ru/en languages for docs
   * write article about this component
 
-# Installation
+# Installation and usage
 
 ## ES6 via npm
+
 ```sh
 npm i vue-simple-menu -D
 ```
 
-## Component as global in browser
-work in progress...
-
-# Usage
-
-Import component to your code
+### Usage
 
 For example, we have app container, and menu component inside
 
@@ -136,4 +134,42 @@ setTimeout(function () {
 }, 1000)
 ```
 
-Done, menu was rendered in our application.
+## Component as global in browser
+
+Pass to your html page scripts below
+
+```html
+<!-- Include Vue library -->
+<script src="//cdn.jsdelivr.net/npm/vue"></script>
+
+<!-- Include vue-simple-menu component -->
+<script src="//unpkg.com/vue-simple-menu"></script>
+```
+
+### Usage
+
+Add element for our application with menu
+
+```html
+<!-- Our app -->
+<div id="app">
+  <vue-simple-menu :raw-menu-data="rawMenuData">
+</div>
+```
+
+And use in you scripts some as:
+
+```js
+// Data for menu, may get by APi or somehow else
+import rawMenuData from './rawMenuData'
+
+// Init vue app with menu component in template
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      rawMenuData: menuData
+    }
+  }
+})
+```
