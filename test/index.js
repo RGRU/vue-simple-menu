@@ -211,7 +211,7 @@ describe('VueSimpleMenu.vue', () => {
     })
   })
 
-  describe('# Behavoir', () => {
+  describe('# Behavior', () => {
     it('Trigger expand menu on click first level items', done => {
       Vue.use(VueSimpleMenu)
 
