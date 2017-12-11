@@ -17,6 +17,7 @@ Vue component for fast create simple menu block
 ## TODO List
 
   * stylize temes
+  * add vue router support for items 
   * add to awesome vue github
   * update figure for readme
   * add ru/en languages for docs
