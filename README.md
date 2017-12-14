@@ -18,7 +18,7 @@ Vue component for fast create simple menu block
 
   * stylize temes
   * add test for vue-router
-  * add test for few components on page
+  * add test for several components on page
   * add to awesome vue github
   * add demo with vue-router
   * update figure for readme
@@ -176,7 +176,7 @@ new Vue({
 })
 ```
 
-### Usage with Vue Router
+## Usage with Vue Router
 
 You can use simple menu with vue router links
 
