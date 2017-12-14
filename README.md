@@ -17,8 +17,10 @@ Vue component for fast create simple menu block
 ## TODO List
 
   * stylize temes
-  * add vue router support for items 
+  * add test for vue-router
+  * add test for few components on page
   * add to awesome vue github
+  * add demo with vue-router
   * update figure for readme
   * add ru/en languages for docs
   * write article about this component
@@ -37,7 +39,7 @@ For example, we have app container, and menu component inside
 
 ```html
 <div id="app">
-  <vue-simple-menu :raw-menu-data="rawMenuData">
+  <vue-simple-menu :raw-menu-data="rawMenuData"></vue-simple-menu>
 </div>
 ```
 
@@ -104,7 +106,7 @@ export default {
 }
 ```
 
-And add imported menu component to Vue through `use` method. Menu data pass to component as options in `use` method
+And add imported menu component to Vue through `use` method. Menu data pass as component
 
 ```js
 import Vue from 'vue'
@@ -112,9 +114,6 @@ import VueSimpleMenu from 'vue-simple-menu'
 
 // Data for menu, may get by APi or somehow else
 import rawMenuData from './rawMenuData'
-
-// Use menu component
-Vue.use(VueSimpleMenu)
 
 // Init vue application
 new Vue({
@@ -125,6 +124,9 @@ new Vue({
       // Init default data for menu
       rawMenuData: {}
     }
+  },
+  components: {
+    'vue-simple-menu': VueSimpleMenu
   }
 })
 
@@ -173,3 +175,24 @@ new Vue({
   }
 })
 ```
+
+### Usage with Vue Router
+
+You can use simple menu with vue router links
+
+Just add value `vueRouter: true` in rawMenuData, and items with this value will be work as vue-router link
+
+Example below
+
+```js
+articles: {
+  id: 'articles',
+  name: 'Статьи',
+  uri: '/articles/list',
+
+  // Add value for associate this item with vue-router
+  vueRouter: true,
+  ...
+```
+
+Done!

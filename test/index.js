@@ -4,28 +4,29 @@ import rawMenuData from '../src/scripts/rawMenuData'
 
 describe('VueSimpleMenu.vue', () => {
   describe('# Init', () => {
-    it('Component has registered in global list', done => {
-      Vue.use(VueSimpleMenu)
+    it('Component has registered in components list', done => {
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData: {}
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
-      // Find component in global list components
+      // Find component in components list
       vm.$nextTick(() => {
-        expect(typeof Vue.options.components['vue-simple-menu']).to.equal('function')
+        expect(typeof vm.$options.components['vue-simple-menu']).to.equal('object')
 
         done()
       })
     })
 
     it('Render after mount', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
@@ -33,6 +34,9 @@ describe('VueSimpleMenu.vue', () => {
           return {
             rawMenuData: {}
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -45,14 +49,16 @@ describe('VueSimpleMenu.vue', () => {
     })
 
     it('Render empty component when no raw-menu-data', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData: {}
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -70,14 +76,16 @@ describe('VueSimpleMenu.vue', () => {
 
   describe('# Temlpate structure', () => {
     it('Expect list items when pass raw data when created app', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -90,14 +98,16 @@ describe('VueSimpleMenu.vue', () => {
     })
 
     it('Expect list items when pass raw data async', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData: {}
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -120,14 +130,16 @@ describe('VueSimpleMenu.vue', () => {
     })
 
     it('Check create child branch', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -140,14 +152,16 @@ describe('VueSimpleMenu.vue', () => {
     })
 
     it('Check create current item name', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -157,7 +171,7 @@ describe('VueSimpleMenu.vue', () => {
           vm.$el
             .querySelectorAll('.vue-simple-menu > .vue-simple-menu__item')[0]
             .querySelector('.vue-simple-menu__link').innerHTML
-          ).to.equal(rawMenuData.articles.name)
+        ).to.equal(rawMenuData.articles.name)
 
         // Check item name from child level (rubrics -> thema -> item2 -> i2 -> i1 === Вложенность 3.1)
         expect(
@@ -169,21 +183,23 @@ describe('VueSimpleMenu.vue', () => {
             .querySelector('.vue-simple-menu__child > .vue-simple-menu > .vue-simple-menu__item:nth-child(1)')
             .querySelector('.vue-simple-menu__title')
             .innerHTML
-          ).to.equal(rawMenuData.rubrics.list.thema.list.item2.list.i2.list.i1.name)
+        ).to.equal(rawMenuData.rubrics.list.thema.list.item2.list.i2.list.i1.name)
 
         done()
       })
     })
 
     it('Check create link in item name', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -194,7 +210,7 @@ describe('VueSimpleMenu.vue', () => {
             .querySelectorAll('.vue-simple-menu > .vue-simple-menu__item')[0]
             .querySelector('.vue-simple-menu__link')
             .getAttribute('href')
-          ).to.equal(rawMenuData.articles.uri)
+        ).to.equal(rawMenuData.articles.uri)
 
         // Check item link from child level (articles -> thema -> item2 -> i2 -> i2 === /test2)
         expect(
@@ -204,7 +220,7 @@ describe('VueSimpleMenu.vue', () => {
             .querySelector('.vue-simple-menu__child > .vue-simple-menu > .vue-simple-menu__item:nth-child(2)')
             .querySelector('.vue-simple-menu__link')
             .getAttribute('href')
-          ).to.equal(rawMenuData.articles.list.item2.list.i2.list.i2.uri)
+        ).to.equal(rawMenuData.articles.list.item2.list.i2.list.i2.uri)
 
         done()
       })
@@ -213,14 +229,16 @@ describe('VueSimpleMenu.vue', () => {
 
   describe('# Behavior', () => {
     it('Trigger expand menu on click first level items', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 
@@ -246,14 +264,16 @@ describe('VueSimpleMenu.vue', () => {
     })
 
     it('Trigger expand menu on click children items', done => {
-      Vue.use(VueSimpleMenu)
 
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
-        data() {
+        data () {
           return {
             rawMenuData
           }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
         }
       }).$mount()
 

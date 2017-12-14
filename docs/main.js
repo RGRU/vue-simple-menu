@@ -416,9 +416,6 @@ var _rawMenuData2 = _interopRequireDefault(_rawMenuData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Use menu component
-_vue2.default.use(_VueSimpleMenu2.default);
-
 // Init vue application
 var app = new _vue2.default({
   el: '#app',
@@ -426,6 +423,10 @@ var app = new _vue2.default({
     return {
       rawMenuData: {}
     };
+  },
+
+  components: {
+    'vue-simple-menu': _VueSimpleMenu2.default
   }
 });
 
@@ -10464,71 +10465,61 @@ var _VueSimpleMenuItem2 = _interopRequireDefault(_VueSimpleMenuItem);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  /**
-   * Install - method for use as vue plugin
-   *
-   * @param  {object} Vue vue instance
-   * @return {void}
-   */
-  install: function install(Vue) {
-    Vue.component('vue-simple-menu', {
-      name: 'VueSimpleMenu',
-      template: '<vue-simple-menu-item :menu="list" />',
-      components: {
-        'vue-simple-menu-item': _VueSimpleMenuItem2.default
-      },
-      props: {
-        rawMenuData: {
-          type: Object,
-          required: true
+  name: 'VueSimpleMenu',
+  components: {
+    'vue-simple-menu-item': _VueSimpleMenuItem2.default
+  },
+  props: {
+    rawMenuData: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      list: []
+    };
+  },
+  mounted: function mounted() {
+    if (this.rawMenuData) {
+      this.list = this.generateBranch(this.rawMenuData);
+    }
+  },
+
+  watch: {
+    rawMenuData: function rawMenuData() {
+      this.list = this.generateBranch(this.rawMenuData);
+    }
+  },
+  methods: {
+    /**
+     * generateBranch - recursive function for generate menu branch
+     *
+     * @param  {object} menuBranch branc menu for precessing
+     * @return {array} complete menu data
+     */
+    generateBranch: function generateBranch(menuBranch) {
+      var _this = this;
+
+      return Object.keys(menuBranch).reduce(function (acc, item) {
+        var menuItem = _extends({}, menuBranch[item]);
+
+        // If have child list items,
+        // generate child branch
+        if (menuItem.list) menuItem.list = _this.generateBranch(menuItem.list);
+
+        // If item need expand behavoir
+        // add property
+        if (menuItem.list && !menuItem.uri) {
+          menuItem.expand = true;
+          menuItem.expanded = true;
         }
-      },
-      data: function data() {
-        return {
-          list: []
-        };
-      },
-      mounted: function mounted() {
-        if (this.rawMenuData) {
-          this.list = this.generateBranch(this.rawMenuData);
-        }
-      },
 
-      watch: {
-        rawMenuData: function rawMenuData() {
-          this.list = this.generateBranch(this.rawMenuData);
-        }
-      },
-      methods: {
-        /**
-         * generateBranch - recursive function for generate menu branch
-         *
-         * @param  {object} menuBranch branc menu for precessing
-         * @return {array} complete menu data
-         */
-        generateBranch: function generateBranch(menuBranch) {
-          var _this = this;
-
-          return Object.keys(menuBranch).reduce(function (acc, item) {
-            var menuItem = _extends({}, menuBranch[item]);
-
-            // If have child list items,
-            // generate child branch
-            if (menuItem.list) menuItem.list = _this.generateBranch(menuItem.list);
-
-            // If item need expand behavoir
-            // add property
-            if (menuItem.list && !menuItem.uri) {
-              menuItem.expand = true;
-              menuItem.expanded = true;
-            }
-
-            return acc.concat(menuItem);
-          }, []);
-        }
-      }
-    });
-  }
+        return acc.concat(menuItem);
+      }, []);
+    }
+  },
+  template: '<vue-simple-menu-item :menu="list" />'
 };
 
 /***/ }),
@@ -10987,6 +10978,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'VueSimpleMenuItem',
@@ -10999,6 +10997,10 @@ exports.default = {
   methods: {
     expandTrigger: function expandTrigger(item) {
       if (item.expand) item.expanded = !item.expanded;
+    },
+
+    itemName: function itemName(name) {
+      return name || 'Заглушка для группы разделов';
     }
   }
 };
@@ -11027,27 +11029,35 @@ var render = function() {
           }
         },
         [
-          item.uri
-            ? _c(
-                "a",
-                {
-                  staticClass: "vue-simple-menu__link",
-                  attrs: { href: item.uri }
-                },
-                [_vm._v(_vm._s(item.name))]
-              )
-            : _c(
-                "span",
-                {
-                  staticClass: "vue-simple-menu__title",
-                  on: {
-                    click: function($event) {
-                      _vm.expandTrigger(item)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(item.name || "Заглушка для группы разделов"))]
-              ),
+          item.vueRouter
+            ? [
+                _c("router-link", { attrs: { to: item.uri } }, [
+                  _vm._v(_vm._s(_vm.itemName(item.name)))
+                ])
+              ]
+            : [
+                item.uri
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "vue-simple-menu__link",
+                        attrs: { href: item.uri }
+                      },
+                      [_vm._v(_vm._s(_vm.itemName(item.name)))]
+                    )
+                  : _c(
+                      "span",
+                      {
+                        staticClass: "vue-simple-menu__title",
+                        on: {
+                          click: function($event) {
+                            _vm.expandTrigger(item)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.itemName(item.name)))]
+                    )
+              ],
           _vm._v(" "),
           item.list
             ? _c(
@@ -11057,7 +11067,8 @@ var render = function() {
                 1
               )
             : _vm._e()
-        ]
+        ],
+        2
       )
     })
   )

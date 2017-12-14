@@ -2,9 +2,6 @@ import Vue from 'vue'
 import VueSimpleMenu from './lib/VueSimpleMenu.vue'
 import rawMenuData from './rawMenuData'
 
-// Use menu component
-Vue.use(VueSimpleMenu)
-
 // Init vue application
 const app = new Vue({
   el: '#app',
@@ -12,6 +9,9 @@ const app = new Vue({
     return {
       rawMenuData: {}
     }
+  },
+  components: {
+    'vue-simple-menu': VueSimpleMenu
   }
 })
 
