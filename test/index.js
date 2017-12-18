@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import VueSimpleMenu from '../src/scripts/lib/VueSimpleMenu.vue'
 import rawMenuData from '../src/scripts/rawMenuData'
 
@@ -190,7 +191,6 @@ describe('VueSimpleMenu.vue', () => {
     })
 
     it('Check create link in item name', done => {
-
       const vm = new Vue({
         template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
         data () {
@@ -221,6 +221,132 @@ describe('VueSimpleMenu.vue', () => {
             .querySelector('.vue-simple-menu__link')
             .getAttribute('href')
         ).to.equal(rawMenuData.articles.list.item2.list.i2.list.i2.uri)
+
+        done()
+      })
+    })
+
+    it('Items with vue-router', done => {
+      Vue.use(VueRouter)
+
+      const router = new VueRouter({
+        routes: [
+          {
+            path: '/articles/list',
+            component: { template: '<div id="childMenu"></div>' }
+          }
+        ]
+      })
+
+      const vm = new Vue({
+        template: `
+          <div class="wrapper">
+            <vue-simple-menu :raw-menu-data="rawMenuData"></vue-simple-menu>
+            <router-view></router-view>
+          </div>`,
+        router,
+        data () {
+          return {
+            rawMenuData
+          }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
+        }
+      }).$mount()
+
+      // Emulate click event
+      router.push('/articles/list')
+
+      vm.$nextTick(() => {
+        expect(!!vm.$el.querySelector('#childMenu')).to.be.true
+
+        // go back (to default route)
+        router.go(-1)
+
+        done()
+      })
+    })
+
+    it('Several menu components in page', done => {
+      Vue.use(VueRouter)
+
+      const ArticlesList = {
+        name: 'ArticlesList',
+        data () {
+          return {
+            rawMenuDataTwo: {
+              item1: {
+                id: 'item1',
+                name: 'Item 1',
+                uri: '//rg.ru'
+              },
+              item2: {
+                id: 'item2',
+                name: 'Item 1',
+                list: {
+                  item1_1: {
+                    id: 'item1_1',
+                    name: 'Item 1_1',
+                    list: {
+                      item1_1_1: {
+                        id: 'item1_1_1',
+                        name: 'Item 1_1_1',
+                        uri: '//rg.ru'
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
+        },
+        template: `
+        <div id="childMenu">
+          ARTICLES LIST
+          <div>
+            <vue-simple-menu :raw-menu-data="rawMenuDataTwo"></vue-simple-menu>
+          </div>
+        </div>`
+      }
+
+      const router = new VueRouter({
+        routes: [
+          {
+            path: '/articles/list',
+            component: ArticlesList
+          }
+        ]
+      })
+
+      const vm = new Vue({
+        template: `
+          <div class="wrapper">
+            <vue-simple-menu :raw-menu-data="rawMenuData"></vue-simple-menu>
+            <router-view></router-view>
+          </div>`,
+        router,
+        data () {
+          return {
+            rawMenuData
+          }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
+        }
+      }).$mount()
+
+      // Emulate click event
+      router.push('/articles/list')
+
+      vm.$nextTick(() => {
+        expect(!!vm.$el.querySelector('#childMenu .vue-simple-menu')).to.be.true
+
+        // go back (to default route)
+        router.go(-1)
 
         done()
       })

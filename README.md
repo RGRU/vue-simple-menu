@@ -17,8 +17,6 @@ Vue component for fast create simple menu block
 ## TODO List
 
   * stylize temes
-  * add test for vue-router
-  * add test for several components on page
   * add to awesome vue github
   * add demo with vue-router
   * update figure for readme
@@ -82,7 +80,7 @@ export default {
   item2: {
     id: 'item1',
     name: 'Item 1',
-    uri: '//rg.ru'
+    uri: '//rg.ru',
 
     // Item can have as child items list
     list: {
@@ -92,10 +90,10 @@ export default {
 
         // List items may be endless
         list: {
-          {
+          item1_1_1: {
             id: 'item1_1_1',
             name: 'Item 1_1_1',
-            uri: '//rg.ru',
+            uri: '//rg.ru'
           }
         }
       }
@@ -155,7 +153,7 @@ Add element for our application with menu
 ```html
 <!-- Our app -->
 <div id="app">
-  <vue-simple-menu :raw-menu-data="rawMenuData">
+  <vue-simple-menu :raw-menu-data="rawMenuData"></vue-simple-menu>
 </div>
 ```
 
