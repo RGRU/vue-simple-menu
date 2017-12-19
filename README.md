@@ -2,25 +2,26 @@
 
 Vue component for fast create simple menu block
 
+> I will be glad to correct the inaccuracy of the my English 😄
+
 [![Build Status](https://travis-ci.org/RGRU/vue-simple-menu.svg?branch=master)](https://travis-ci.org/RGRU/vue-simple-menu)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![npm version](https://badge.fury.io/js/vue-simple-menu.svg)](https://badge.fury.io/js/vue-simple-menu)
 
-## Для кого?
+## For whom?
 
-Простое и легкое меню с набором основного функционала, которого хватает в 80% случаев:
-  * Элементы меню с прямой ссылкой
-  * Элементы меню как раскрывающийся каталог
-  * Бесконечная вложенность
-  * __В процессе:__ _Стилизация внешнего вида (можно выбрать готовую, либо добвить самому)_
+Simple and easy menu with a set of basic functionality, which is enought in 80% of cases:
+  * Menu items with direct link (href="/url.html")
+  * Compatibility with vue-router
+  * Menu items can be toggle expand
+  * Menu items with infinity nesting
+  * **In process:** *stylize as you want (you can select default or make and apply own style)*
 
 ## TODO List
 
   * stylize temes
   * add to awesome vue github
   * add demo with vue-router
-  * update figure for readme
-  * add ru/en languages for docs
   * write article about this component
 
 # Installation and usage
@@ -41,30 +42,30 @@ For example, we have app container, and menu component inside
 </div>
 ```
 
-Для формирования меню, в него нужно передать в свойство (menuData) данные определенного формата (то, как мы их получаем отдается на откуп разработчику)
+For building menu, you need pass to `raw-menu-data` data of menu, must be of a certain format  
 
 Params
 
 | Name | Type | Description |
 |:-- |:-- |:-- |
-| id | string | Identificator for item. It is link to itself id key (figure 1)<br>Идентификатор в любом формате, какой вы сами придумаете |
+| id | string | ID for item. It is link to itself id key (figure 1)<br>ID format as you want |
 | name | string | Name or title for menu item element (figure 2) |
 | uri | string | Add link to item element (figure 3) |
-| list | array: object | Add children elements to item (figure 4)<br>Структура вложенных объектов повторяет основную родительску |
+| list | array: object | Add children elements to item (figure 4)<br>The structure of nesting objects repeats the main parent |
 
 __Pictures for data params__
 
 __figure 1__ Identificator for item. It is link to itself id key  
-![figure1](./assets/figure1.jpg)
+![figure1](./assets/figure1.png)
 
 __figure 2__ Name or title for menu item element  
-![figure2](./assets/figure2.jpg)
+![figure2](./assets/figure2.png)
 
 __figure 3__ Add link to item element  
-![figure3](./assets/figure3.jpg)
+![figure3](./assets/figure3.png)
 
 __figure 4__ Add children elements to item  
-![figure4](./assets/figure4.jpg)
+![figure4](./assets/figure4.png)
 
 For example file rawMenuData.js
 
