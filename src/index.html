@@ -7,10 +7,19 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-  <h1>Demo example Vue Simple menu</h1>
-  <div id="app">
-    <div>
+  <div id="app" class="app">
+    <div class="sidebar">
       <vue-simple-menu :raw-menu-data="rawMenuData"></vue-simple-menu>
+    </div>
+    <div class="main">
+        <div class="title">Demo example Vue Simple menu</div>
+        <ul>
+          <li>Элементы с пометкой <b>with vue router</b> привязаны к раутингу через vue router</li>
+          <li>Элементы в данных которых не указано поле <b>name</b> выводят пустой блок</li>
+        </ul>
+        <div class="content">
+          <router-view></router-view>
+        </div>
     </div>
   </div>
 </body>

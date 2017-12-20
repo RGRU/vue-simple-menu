@@ -262,6 +262,10 @@ exports.default = {
     rawMenuData: {
       type: Object,
       required: true
+    },
+    defaultName: {
+      type: String,
+      default: ''
     }
   },
   data: function data() {
@@ -404,10 +408,6 @@ exports.default = {
   methods: {
     expandTrigger: function expandTrigger(item) {
       if (item.expand) item.expanded = !item.expanded;
-    },
-
-    itemName: function itemName(name) {
-      return name || 'Заглушка для группы разделов';
     }
   }
 };
@@ -438,19 +438,25 @@ var render = function() {
         [
           item.vueRouter
             ? [
-                _c("router-link", { attrs: { to: item.uri } }, [
-                  _vm._v(_vm._s(_vm.itemName(item.name)))
-                ])
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "vue-simple-menu__title vue-simple-menu__link",
+                    attrs: { to: item.uri }
+                  },
+                  [_vm._v(_vm._s(item.name))]
+                )
               ]
             : [
                 item.uri
                   ? _c(
                       "a",
                       {
-                        staticClass: "vue-simple-menu__link",
+                        staticClass:
+                          "vue-simple-menu__title vue-simple-menu__link",
                         attrs: { href: item.uri }
                       },
-                      [_vm._v(_vm._s(_vm.itemName(item.name)))]
+                      [_vm._v(_vm._s(item.name))]
                     )
                   : _c(
                       "span",
@@ -462,7 +468,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(_vm._s(_vm.itemName(item.name)))]
+                      [_vm._v(_vm._s(item.name))]
                     )
               ],
           _vm._v(" "),

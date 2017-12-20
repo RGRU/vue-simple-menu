@@ -5,8 +5,7 @@ export default {
 
     // Параметры элемента
     id: 'articles',
-    name: 'Статьи - with vue Router',
-    vueRouter: true,
+    name: 'Статьи',
     uri: '/articles/list',
 
     // Если есть вложенность
@@ -26,7 +25,7 @@ export default {
           },
           i2: {
             id: 'i2',
-            name: 'Вложенность 2.2 - vue Router',
+            name: 'Вложенность 2.2',
             list: {
               i1: {
                 id: 'i1',
@@ -136,14 +135,12 @@ export default {
       },
       org: {
         id: 'org',
-        name: 'Организации - with vue Router',
-        vueRouter: true,
+        name: 'Организации',
         uri: '/rubrics/org'
       },
       reg: {
         id: 'reg',
-        name: 'Регионы - with vue Router',
-        vueRouter: true,
+        name: 'Регионы',
         uri: '/rubrics/reg'
       }
     }

@@ -15,14 +15,11 @@ Simple and easy menu with a set of basic functionality, which is enought in 80% 
   * Compatibility with vue-router
   * Menu items can be toggle expand
   * Menu items with infinity nesting
-  * **In process:** *stylize as you want (you can select default or make and apply own style)*
+  * Stylize as you want (you can select default or make and require own style)
 
 ## TODO List
 
-  * stylize temes
   * add to awesome vue github
-  * add demo with vue-router
-  * remove hardcode dummy when name value is null
   * write article about this component
 
 # Installation and usage
@@ -181,9 +178,11 @@ new Vue({
 
 ## Usage with Vue Router
 
-You can use simple menu with vue router links
+You can use simple menu with [vue router](https://router.vuejs.org/en/essentials/getting-started.html) links
 
 Just add value `vueRouter: true` in rawMenuData, and items with this value will be work as vue-router link
+
+Is implied, the vue router is already connected in your app script
 
 Example below
 
@@ -208,7 +207,6 @@ You can use default styles for menu. Just require sass or css file to your proje
 Example
 
 ```js
-
 // Path where put styles in your own project
 require('../styles/default.sass')
 ```
@@ -218,5 +216,5 @@ Or pass default style from CDN
 Example
 
 ```html
-<link href="//unpkg.com/vue-simple-menu/styles/vue-simple-menu.default.min.css" rel="stylesheet" />
+<link href="//unpkg.com/vue-simple-menu@0.0.10/dist/styles/vue-simple-menu.default.min.css" rel="stylesheet" />
 ```

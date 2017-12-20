@@ -10,6 +10,10 @@ export default {
     rawMenuData: {
       type: Object,
       required: true
+    },
+    defaultName: {
+      type: String,
+      default: ''
     }
   },
   data () {

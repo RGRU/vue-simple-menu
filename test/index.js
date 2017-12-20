@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueSimpleMenu from '../src/scripts/lib/VueSimpleMenu.vue'
-import rawMenuData from '../src/scripts/rawMenuData'
+import rawMenuData from '../src/scripts/rawMenuData4Test'
 
 describe('VueSimpleMenu.vue', () => {
   describe('# Init', () => {
