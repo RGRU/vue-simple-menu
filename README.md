@@ -4,6 +4,8 @@ Vue component for fast create simple menu block
 
 > I will be glad to correct the inaccuracy of the my English 😄
 
+(Описание на русском языке)[README.ru.md]
+
 [![Build Status](https://travis-ci.org/RGRU/vue-simple-menu.svg?branch=master)](https://travis-ci.org/RGRU/vue-simple-menu)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![npm version](https://badge.fury.io/js/vue-simple-menu.svg)](https://badge.fury.io/js/vue-simple-menu)
@@ -20,6 +22,7 @@ Simple and easy menu with a set of basic functionality, which is enought in 80% 
 ## TODO List
 
   * add to awesome vue github
+  * test use with cdn
   * write article about this component
 
 # Installation and usage
@@ -103,7 +106,7 @@ export default {
 }
 ```
 
-And add imported menu component to Vue through `use` method. Menu data pass as component.
+And add imported menu component to Vue app. Menu data pass as component
 
 ```js
 import Vue from 'vue'
