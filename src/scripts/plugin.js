@@ -4,6 +4,14 @@
 
 import VueSimpleMenu from './lib/VueSimpleMenu.vue'
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(VueSimpleMenu)
+const VueSimpleMenuPlugin = {
+  install (Vue) {
+    Vue.component('vue-simple-menu', VueSimpleMenu)
+  }
 }
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(VueSimpleMenuPlugin)
+}
+
+export default VueSimpleMenuPlugin
