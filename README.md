@@ -4,7 +4,7 @@ Vue component for fast create simple menu block
 
 > I will be glad to correct the inaccuracy of the my English 😄
 
-(Описание на русском языке)[README.ru.md]
+[Описание на русском языке](README.ru.md)
 
 [![Build Status](https://travis-ci.org/RGRU/vue-simple-menu.svg?branch=master)](https://travis-ci.org/RGRU/vue-simple-menu)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
