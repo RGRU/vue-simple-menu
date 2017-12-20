@@ -19,12 +19,6 @@ Simple and easy menu with a set of basic functionality, which is enought in 80% 
   * Menu items with infinity nesting
   * Stylize as you want (you can select default or make and require own style)
 
-## TODO List
-
-  * add to awesome vue github
-  * test use with cdn
-  * write article about this component
-
 # Installation and usage
 
 ## ES6 via npm
