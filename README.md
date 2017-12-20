@@ -22,6 +22,7 @@ Simple and easy menu with a set of basic functionality, which is enought in 80% 
   * stylize temes
   * add to awesome vue github
   * add demo with vue-router
+  * remove hardcode dummy when name value is null
   * write article about this component
 
 # Installation and usage
@@ -105,7 +106,7 @@ export default {
 }
 ```
 
-And add imported menu component to Vue through `use` method. Menu data pass as component
+And add imported menu component to Vue through `use` method. Menu data pass as component.
 
 ```js
 import Vue from 'vue'
@@ -113,6 +114,9 @@ import VueSimpleMenu from 'vue-simple-menu'
 
 // Data for menu, may get by APi or somehow else
 import rawMenuData from './rawMenuData'
+
+// Add style for menu
+require('../styles/default.sass')
 
 // Init vue application
 new Vue({
@@ -192,6 +196,27 @@ articles: {
   // Add value for associate this item with vue-router
   vueRouter: true,
   ...
+}
 ```
 
 Done!
+
+## Stylize
+
+You can use default styles for menu. Just require sass or css file to your project from styles folder in src. You should setup webpack config for processing styles (for example [css-loader](https://github.com/webpack-contrib/css-loader))
+
+Example
+
+```js
+
+// Path where put styles in your own project
+require('../styles/default.sass')
+```
+
+Or pass default style from CDN
+
+Example
+
+```html
+<link href="//unpkg.com/vue-simple-menu/styles/vue-simple-menu.default.min.css" rel="stylesheet" />
+```

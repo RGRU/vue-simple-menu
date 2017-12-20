@@ -1,0 +1,22 @@
+.vue-simple-menu
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+  &__item
+    padding-left: 20px
+    padding-top: 3px
+    padding-bottom: 3px
+
+    &_expand
+      max-height: 20px
+      overflow: hidden
+      transition: max-height .3s cubic-bezier(0.54, -0.06, 0, 1)
+
+    &.expanded
+      max-height: 300px
+      background: rgba(100, 0, 0, .1)
+
+  &__link
+    color: blue
+    text-decoration: none

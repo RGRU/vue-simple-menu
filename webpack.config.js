@@ -1,6 +1,7 @@
 // const webpack = require('webpack')
 const UglifyJsPlugin = require('uglify-js-plugin')
 const path = require('path')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 const config = {
   module: {
@@ -20,6 +21,18 @@ const config = {
       }
     ]
   }
+}
+
+const config4Styles = {
+  output: {
+    path: path.join(__dirname, 'dist/styles'),
+    filename: '[name].css'
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: '[name].css'
+    })
+  ]
 }
 
 module.exports = [
@@ -62,6 +75,61 @@ module.exports = [
           test: /\.min\.js$/
         })
       ]
+    }
+  ),
+
+  // Build style
+  Object.assign(
+    {},
+    config4Styles,
+    {
+      entry: {
+        'vue-simple-menu.default': path.join(__dirname, 'src/styles/default.sass')
+      },
+      module: {
+        rules: [
+          {
+            test: /\.sass$/,
+            use: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                'css-loader',
+                'sass-loader'
+              ]
+            })
+          }
+        ]
+      }
+    }
+  ),
+
+  // Build minified style
+  Object.assign(
+    {},
+    config4Styles,
+    {
+      entry: {
+        'vue-simple-menu.default.min': path.join(__dirname, 'src/styles/default.sass')
+      },
+      module: {
+        rules: [
+          {
+            test: /\.sass$/,
+            use: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    minimize: true
+                  }
+                },
+                'sass-loader'
+              ]
+            })
+          }
+        ]
+      }
     }
   )
 

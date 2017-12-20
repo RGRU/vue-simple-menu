@@ -15,6 +15,9 @@ const app = new Vue({
   }
 })
 
+// Add style for menu
+require('../styles/default.sass')
+
 // Emulate async
 setTimeout(function () {
   app.rawMenuData = rawMenuData
