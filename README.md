@@ -216,5 +216,5 @@ Or pass default style from CDN
 Example
 
 ```html
-<link href="//unpkg.com/vue-simple-menu@0.0.10/dist/styles/vue-simple-menu.default.min.css" rel="stylesheet" />
+<link href="//unpkg.com/vue-simple-menu/dist/styles/vue-simple-menu.default.min.css" rel="stylesheet" />
 ```
