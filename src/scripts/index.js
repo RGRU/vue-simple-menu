@@ -18,8 +18,7 @@ const app = new Vue({
   }),
   data () {
     return {
-      // rawMenuData: {}
-      rawMenuData
+      rawMenuData: {}
     }
   },
   components: {

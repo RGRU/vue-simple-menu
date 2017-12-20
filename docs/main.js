@@ -884,8 +884,7 @@ var app = new _vue2.default({
   }),
   data: function data() {
     return {
-      // rawMenuData: {}
-      rawMenuData: _rawMenuData2.default
+      rawMenuData: {}
     };
   },
 
