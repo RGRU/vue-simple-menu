@@ -1,7 +1,7 @@
 // const webpack = require('webpack')
 const UglifyJsPlugin = require('uglify-js-plugin')
 const path = require('path')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = {
   module: {
