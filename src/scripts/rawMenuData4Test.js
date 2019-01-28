@@ -87,6 +87,7 @@ export default {
   rubrics: {
     id: 'rubrics',
     name: 'Рубрики',
+    expanded: false,
     list: {
       thema: {
         id: 'thema',

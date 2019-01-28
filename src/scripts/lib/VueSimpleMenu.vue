@@ -50,7 +50,7 @@ export default {
         // add property
         if (menuItem.list && !menuItem.uri) {
           menuItem.expand = true
-          menuItem.expanded = true
+          menuItem.expanded = typeof menuItem.expanded === 'boolean' ? menuItem.expanded : true
         }
 
         return acc.concat(menuItem)
