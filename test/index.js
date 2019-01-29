@@ -427,5 +427,29 @@ describe('VueSimpleMenu.vue', () => {
         })
       })
     })
+
+    it('Turn off menu item if its data has a expanded:false property', done => {
+
+      const vm = new Vue({
+        template: '<div class="wrapper"><vue-simple-menu :raw-menu-data="rawMenuData" /></div>',
+        data() {
+          return {
+            rawMenuData
+          }
+        },
+        components: {
+          'vue-simple-menu': VueSimpleMenu
+        }
+      }).$mount()
+
+      vm.$nextTick(() => {
+        let itemEl = vm.$el.querySelectorAll('.vue-simple-menu')[0].lastChild
+
+        expect(itemEl.classList.contains('vue-simple-menu__item_expand')).to.be.true
+        expect(itemEl.classList.contains('expanded')).to.be.false
+
+        done()
+      })
+    })
   })
 })
