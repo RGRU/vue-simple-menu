@@ -1,7 +1,8 @@
-// const webpack = require('webpack')
-const UglifyJsPlugin = require('uglify-js-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const config = {
   module: {
@@ -26,10 +27,10 @@ const config = {
 const config4Styles = {
   output: {
     path: path.join(__dirname, 'dist/styles'),
-    filename: '[name].css'
+    filename: '[name].js'
   },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css'
     })
   ]
@@ -49,7 +50,10 @@ module.exports = [
         libraryTarget: 'umd',
         library: 'VueSimpleMenu',
         umdNamedDefine: true
-      }
+      },
+      plugins: [
+        new VueLoaderPlugin()
+      ]
     }
   ),
 
@@ -59,6 +63,13 @@ module.exports = [
     {},
     config,
     {
+      optimization: {
+        minimizer: [
+          new UglifyJsPlugin({
+            test: /\.min\.js$/
+          })
+        ]
+      },
       entry: {
         'vue-simple-menu': path.join(__dirname, 'src/scripts/plugin.js'),
         'vue-simple-menu.min': path.join(__dirname, 'src/scripts/plugin.js')
@@ -71,9 +82,7 @@ module.exports = [
         library: 'VueSimpleMenu'
       },
       plugins: [
-        new UglifyJsPlugin({
-          test: /\.min\.js$/
-        })
+        new VueLoaderPlugin()
       ]
     }
   ),
@@ -90,13 +99,11 @@ module.exports = [
         rules: [
           {
             test: /\.sass$/,
-            use: ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: [
-                'css-loader',
-                'sass-loader'
-              ]
-            })
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'sass-loader'
+            ]
           }
         ]
       }
@@ -108,6 +115,11 @@ module.exports = [
     {},
     config4Styles,
     {
+      optimization: {
+        minimizer: [
+          new OptimizeCSSAssetsPlugin({})
+        ]
+      },
       entry: {
         'vue-simple-menu.default.min': path.join(__dirname, 'src/styles/default.sass')
       },
@@ -115,18 +127,11 @@ module.exports = [
         rules: [
           {
             test: /\.sass$/,
-            use: ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: [
-                {
-                  loader: 'css-loader',
-                  options: {
-                    minimize: true
-                  }
-                },
-                'sass-loader'
-              ]
-            })
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'sass-loader'
+            ]
           }
         ]
       }
